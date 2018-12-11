@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    body{
+      margin:0;
+    }
+    section{
+      position: relative;
+      height: 100vh;
+      width: 100vw;
+      background-color:rgba(0,0,0,0.2);
+    }
+    input{
+      height: 50px;
+      width: 120px;
+      background-color: orange;
+      border-radius: 50px;
+      margin: 5px 0 0 5px;
+      line-height: 50px;
+      text-align: center;
+      outline: none;
+      float: left;
+      clear: both;
+    }
+    div[class*="-"]{
+      width: 200px;
+      height: 200px;
+      transform-style: preserve-3d;
+      animation-play-state: paused;
+    }
+    .x-z{
+      position: absolute;
+      left:0;
+      right:0;
+      top:0;
+      bottom:0;
+      margin:auto;
+      animation:x-z 15s infinite linear;
+    }
+    .x-n{
+      animation:x-n 15s infinite linear;
+    }
+    .y-z{
+      animation:y-z 15s infinite linear;
+    }
+    .y-n{
+      animation:y-n 15s infinite linear;
+    }
+    .z-z{
+      animation:z-z 15s infinite linear;
+    }
+    .z-n{
+      animation:z-n 15s infinite linear;
+    }
+    /* -------------------------alpha 面 */
+    .alpha{
+      height: 600px;
+      width: 600px;
+      position: absolute;
+      transform-style: preserve-3d;
+      left:-200px;
+      top:-200px;
+      transform: rotateX(45deg) rotateY(45deg) rotateZ(45deg);
+    }
+    .alphaz{
+      height: 600px;
+      width: 600px;
+      transform-style: preserve-3d;
+      animation:alphaz 15s infinite linear;
+      animation-play-state:paused;
+    }
+    
+    .alphaf{
+      height: 600px;
+      width: 600px;
+      background-color: rgba(0,0,255,0.666);
+      animation:alphaf 15s infinite linear;
+      animation-play-state:paused;
+    }
+
+
+    input:nth-of-type(1):active ~ .x-z{
+      animation-play-state: running;
+    }
+    input:nth-of-type(2):active ~ .x-z>.x-n{
+      animation-play-state: running;
+    }
+    input:nth-of-type(3):active ~ .x-z>.x-n>.y-z{
+      animation-play-state: running;
+    }
+    input:nth-of-type(4):active ~ .x-z>.x-n>.y-z>.y-n{
+      animation-play-state: running;
+    }
+    input:nth-of-type(5):active ~ .x-z>.x-n>.y-z>.y-n>.z-z{
+      animation-play-state: running;
+    }
+    input:nth-of-type(6):active ~ .x-z>.x-n>.y-z>.y-n>.z-z>.z-n{
+      animation-play-state: running;
+    }
+    input:nth-of-type(7):active ~ .x-z>.x-n>.y-z>.y-n>.z-z>.z-n>.alpha>.alphaz{
+      animation-play-state: running;
+    }
+    input:nth-of-type(8):active ~ .x-z>.x-n>.y-z>.y-n>.z-z>.z-n>.alpha>.alphaz>.alphaf{
+      animation-play-state: running;
+    }
+    /* -------------------------动画 */
+    @keyframes x-z{
+      from{transform: rotateX(0deg);}
+      to{transform: rotateX(360deg);}
+    }
+    @keyframes x-n{
+      from{transform: rotateX(0deg);}
+      to{transform: rotateX(-360deg);}
+    }
+    @keyframes y-z{
+      from{transform: rotateY(0deg);}
+      to{transform: rotatey(360deg);}
+    }
+    @keyframes y-n{
+      from{transform: rotateY(0deg);}
+      to{transform: rotateY(-360deg);}
+    }
+    @keyframes z-z{
+      from{transform: rotateZ(0deg);}
+      to{transform: rotateZ(360deg);}
+    }
+    @keyframes z-n{
+      from{transform: rotateZ(0deg);}
+      to{transform: rotateZ(-360deg);}
+    }
+    @keyframes alphaz{
+      from{transform: translateZ(0);}
+      to{transform: translateZ(800px);}
+    }
+    @keyframes alphaf{
+      from{transform: translateZ(0);}
+      to{transform: translateZ(-800px);}
+    }
+    /* -------------------------立方体 */
+    .side{
+      width: 200px;
+      height: 200px;
+      position: absolute;
+      text-align: center;
+      line-height: 200px;
+      border:2px solid;
+      font-size: 5em;
+      box-sizing: border-box;
+    }
+    .front{
+      transform: translateZ(100px);
+      background: rgba(255, 140, 0, 0.6);
+    }
+    .back{
+      transform:translateZ(-100px);
+      background: rgba(255, 140, 0, 0.6);
+    }
+    .left{
+      transform: rotateY(90deg) translateZ(-100px);
+      background: rgba(255, 140, 0, 0.6);
+    }
+    .right{
+      transform: rotateY(90deg) translateZ(100px);
+      background: rgba(255, 140, 0, 0.6);
+    }
+    .top{
+      transform: rotateX(90deg) translatez(100px);
+      transform-origin: left;
+      background: rgba(255, 140, 0, 0.6);
+    }
+    .bottom{
+      transform: rotateX(90deg) translatez(-100px);
+      transform-origin: left;
+      background: rgba(255, 140, 0, 0.6); 
+    } 
+    
+    
+  </style>
+</head>
+<body>
+  <section>
+    <input type="button" value="X轴正向旋转">
+    <input type="button" value="X轴逆向旋转">
+    <input type="button" value="Y轴正向旋转">
+    <input type="button" value="Y轴逆向旋转">
+    <input type="button" value="Z轴正向旋转">
+    <input type="button" value="Z轴逆向旋转">
+    <input type="button" value="正向移动alpha面">
+    <input type="button" value="负向移动alpha面">
+    <div class="x-z">
+      <div class="x-n">
+        <div class="y-z">
+          <div class="y-n">
+            <div class="z-z">
+              <div class="z-n">
+                  <div class="side front">前</div>
+                  <div class="side back">后</div>
+                  <div class="side left">左</div>
+                  <div class="side right">右</div>
+                  <div class="side top">上</div>
+                  <div class="side bottom">下</div>
+                  <div class="alpha">
+                    <div class="alphaz">
+                      <div class="alphaf">
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>  
+</body>
+</html>
